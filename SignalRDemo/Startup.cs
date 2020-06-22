@@ -25,6 +25,7 @@ namespace SignalRDemo
         {
             services.AddRazorPages();
             services.AddSignalR();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +45,8 @@ namespace SignalRDemo
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(opt => opt.AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {
