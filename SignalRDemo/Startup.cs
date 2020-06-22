@@ -25,7 +25,13 @@ namespace SignalRDemo
         {
             services.AddRazorPages();
             services.AddSignalR();
-            services.AddCors();
+            services.AddCors(options  => {
+                options.AddPolicy(name: "Test",
+                              builder =>
+                              {
+                                  builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+                              });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,12 +52,12 @@ namespace SignalRDemo
 
             app.UseAuthorization();
 
-            app.UseCors(opt => opt.AllowAnyOrigin());
+            app.UseCors("Test");
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapHub<ChatHub>("/chathub");
+                endpoints.MapHub<ChatHub>("/chathub").RequireCors("Test");
             });
         }
     }
