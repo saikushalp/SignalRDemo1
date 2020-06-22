@@ -29,7 +29,7 @@ namespace SignalRDemo
                 options.AddPolicy(name: "Test",
                               builder =>
                               {
-                                  builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                                  builder.WithOrigins("http://localhost:60744/").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
                               });
             });
         }
