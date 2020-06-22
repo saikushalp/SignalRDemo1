@@ -29,7 +29,7 @@ namespace SignalRDemo
                 options.AddPolicy(name: "Test",
                               builder =>
                               {
-                                  builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+                                  builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                               });
             });
         }
